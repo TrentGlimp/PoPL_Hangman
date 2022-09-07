@@ -1,7 +1,7 @@
 # create the board
-#    o
-#   /|\
-#    /\
+##   o
+##   /|\
+##    /\
 # ask for word
 # ______ _____ generate line to show how many characters
 
