@@ -12,3 +12,4 @@
 # if all body parts are on the board, game is over
 # if all letters are on the board, game is won
 # gameover screen with option to restart 
+# goal for 9/13 get hangman hanging 
