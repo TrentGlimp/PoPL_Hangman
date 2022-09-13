@@ -1,3 +1,5 @@
+import getpass
+# make conditional to prevent double guessing
 class Game(object):
     def __init__(self):
         self.man = "   \n   \n   \n"
@@ -9,34 +11,37 @@ class Game(object):
 
 
 word = input("Enter a word: ")
+for i in range(20):print("")
 charList = []
 guessedList = []
 for each in word:
     charList.append(each)
-print(charList)
 emptyList = ["_" if char != " " else char for char in charList]
-print(emptyList)
 
 
 # make sure letter is in the list of letters(for the word) and the input is not a special char or number
 # if letter is correct replace underscores with letter ex: word = hello, guess: = e result: _e___
 strikes = 0
 def check_guess(letter, strikes):
+    found = False
     for i in range(len(charList)):
         if charList[i] == letter:
             emptyList[i] = letter
-            print("Correct guess!")
-        else:
-            guessedList.append(letter)
-            strikes += 1  # change to own elif so
-            print("Not quite, try another letter.")
+            found = True
+    if found:
+        print("Correct guess!")
+    else:
+        print("Not quite, try another guess.")
+        strikes += 1
+    print(f"You have {strikes} strikes.")
     return strikes
 
 game = Game()
 
 while 6 >= strikes:
     letter = input("Guess a letter: ")
-    check_guess(input("Guess a letter: "), strikes)
+    strikes = check_guess(letter, strikes)
+    print(''.join(emptyList))
     if game.board == game.word:
         print("Congratulations you win!")
         quit()
