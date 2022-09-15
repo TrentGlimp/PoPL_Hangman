@@ -30,13 +30,13 @@ def check_guess(letter, strikes):
             emptyList[i] = letter
             found = True
     if found:
-        print("Correct guess!")
+        print("\nCorrect guess!")
     else:
-        print("Not quite, try another guess.")
+        print("\nNot quite, try another guess.")
         if letter not in guessedList:    
             strikes += 1
             guessedList.append(letter)
-    print(f"You have {strikes} strikes.")
+    print(f"You have {strikes} strikes.\n")
     return strikes
 
 game = Game()
@@ -44,7 +44,7 @@ game = Game()
 while 6 >= strikes:
     letter = input("Guess a letter: ")
     strikes = check_guess(letter, strikes)
-    print(''.join(emptyList))
+    print(''.join(emptyList) + "\n")
     if game.board == game.word:
         print("Congratulations you win!")
         quit()
