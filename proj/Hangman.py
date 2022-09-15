@@ -23,6 +23,7 @@ emptyList = ["_" if char != " " else char for char in charList]
 # if letter is correct replace underscores with letter ex: word = hello, guess: = e result: _e___
 strikes = 0
 def check_guess(letter, strikes):
+    global guessedList
     found = False
     for i in range(len(charList)):
         if charList[i] == letter:
@@ -32,7 +33,9 @@ def check_guess(letter, strikes):
         print("Correct guess!")
     else:
         print("Not quite, try another guess.")
-        strikes += 1
+        if letter not in guessedList:    
+            strikes += 1
+            guessedList.append(letter)
     print(f"You have {strikes} strikes.")
     return strikes
 
