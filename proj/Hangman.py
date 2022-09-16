@@ -39,6 +39,23 @@ def check_guess(letter, strikes):
     print(f"You have {strikes} strikes.\n")
     return strikes
 
+def check_phrase(strikes):
+    global phrase
+    phrase = input("Guess the phrase: ")
+    for letter in phrase:
+        if letter in guessedList:
+            print("\nA letter in the phrase has already been guessed.")
+    if phrase == ''.join(charList):
+        print("Congratulations you win!")
+        quit()
+    else:
+        print("Not quite, try another phrase or letter.")
+        strikes += 1
+    print(f"You have {strikes} strikes.\n")
+    return strikes
+
+
+form_phrase()
 game = Game()
 
 while 6 >= strikes:
