@@ -9,21 +9,24 @@ class Game(object):
     def __str__(self):
         return self.man + self.board
 
-
-word = input("Enter a word: ")
-for i in range(20):print("")
-charList = []
-guessedList = []
-for each in word:
-    charList.append(each)
-emptyList = ["_" if char != " " else char for char in charList]
+def form_phrase():
+    phrase = input("Enter a phrase: ")
+    for i in range(20):print("")
+    global charList
+    charList = []
+    global guessedList
+    guessedList = []
+    for each in phrase:
+        charList.append(each)
+    global emptyList
+    emptyList = ["_" if char != " " else char for char in charList]
 
 
 # make sure letter is in the list of letters(for the word) and the input is not a special char or number
 # if letter is correct replace underscores with letter ex: word = hello, guess: = e result: _e___
 strikes = 0
-def check_guess(letter, strikes):
-    global guessedList
+def check_letter(strikes):
+    letter = input("Guess a letter: ")
     found = False
     for i in range(len(charList)):
         if charList[i] == letter:
@@ -59,8 +62,14 @@ form_phrase()
 game = Game()
 
 while 6 >= strikes:
-    letter = input("Guess a letter: ")
-    strikes = check_guess(letter, strikes)
+    valid = False
+    while not valid:
+        letter_or_phrase = input("Would you like to guess a single letter or the whole phrase\n[l, p]\n")
+        if letter_or_phrase == "l" or letter_or_phrase == "p":
+            valid = True
+            if letter_or_phrase == "l":strikes = check_letter(strikes)
+            else:strikes = check_phrase(strikes)
+
     print(''.join(emptyList) + "\n")
     if game.board == game.word:
         print("Congratulations you win!")
